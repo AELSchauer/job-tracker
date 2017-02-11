@@ -1,0 +1,21 @@
+<h1>All Categories</h1>
+
+<%= link_to "Create Category", new_category_path, class: "btn btn-create" %>
+<br>
+<table>
+  <% @categories.each do |category| %>
+    <tr class=category_<%=category.id%> >
+      <td>&bull;</td>
+      <td>
+        <%= link_to category.title, category_path(category) %>
+      </td>
+      <td></td>
+      <td>
+        <%= link_to "Edit", edit_category_path(category), id: "edit-#{category.id}", class: "btn btn-edit" %>
+      </td>
+      <td>
+        <%= link_to "Delete", category_path(category), id: "delete-#{category.id}", class: "btn btn-delete", method: :delete %>
+      </td>
+    </tr>
+  <% end %>
+</table>

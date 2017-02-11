@@ -1,4 +1,6 @@
-All Jobs for <strong><%= @company.name %></strong>
+<h1><%= @company.name %></h1>
+
+<h2>Jobs</h2>
 
 <% @company.jobs.each do |job| %>
   <ul><%= job.title %></ul>

@@ -1,9 +1,21 @@
-<h3>All Companies</h3>
+<h1>All Companies</h1>
 
-<% @companies.each do |company| %>
-  <div class=company_<%= company.id %>>
-    <%= link_to company.name, company_path(company) %><br>
-    <%= link_to "Edit", edit_company_path(company) %>
-    <%= link_to "Delete", company_path(company), method: "delete" %>
-  </div>
-<% end %>
+<%= link_to "Create Company", new_company_path, class: "btn btn-create" %>
+<br>
+<table>
+  <% @companies.each do |company| %>
+    <tr class=company_<%=company.id%> >
+      <td>&bull;</td>
+      <td>
+        <%= link_to company.name, company_path(company) %>
+      </td>
+      <td></td>
+      <td>
+        <%= link_to "Edit", edit_company_path(company), id: "edit-#{company.id}", class: "btn btn-edit" %>
+      </td>
+      <td>
+        <%= link_to "Delete", company_path(company), id: "delete-#{company.id}", class: "btn btn-delete", method: :delete %>
+      </td>
+    </tr>
+  <% end %>
+</table>

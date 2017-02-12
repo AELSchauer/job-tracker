@@ -1,5 +1,10 @@
 class ContactsController < ApplicationController
 
+  def index
+    company = Company.find(params[:company_id])
+    redirect_to company_path(company)
+  end
+
   def new
     @company = Company.find(params[:company_id])
     @contact = @company.contacts.new

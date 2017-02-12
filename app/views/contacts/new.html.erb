@@ -1,0 +1,46 @@
+<h2>Create New Contact for <%= @company.name %></h2>
+
+<%= form_for [@company, @contact] do |f| %>
+  <ul>
+    <% @contact.errors.full_messages.each do |error| %>
+      <li class='error-message'><%= error %></li>
+    <% end %>
+  </ul>
+  <table>
+    <tr>
+      <td>
+        <%= f.label :first_name %>
+      </td>
+      <td>
+        <%= f.text_field :first_name %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.label :last_name %>
+      </td>
+      <td>
+        <%= f.text_field :last_name %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.label :position %>
+      </td>
+      <td>
+        <%= f.text_field :position %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.label :email %>
+      </td>
+      <td>
+        <%= f.text_field :email %>
+      </td>
+    </tr>
+  </table>
+  <%= f.submit "Submit", class: 'btn btn-submit' %>
+<% end %>
+<%= link_to "Cancel", company_path(@company), class: 'btn' %>
+

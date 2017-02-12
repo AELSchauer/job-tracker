@@ -37,6 +37,18 @@ ActiveRecord::Schema.define(version: 20170212051956) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "contacts", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "position"
+    t.string   "email"
+    t.integer  "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "contacts", ["company_id"], name: "index_contacts_on_company_id", using: :btree
+
   create_table "jobs", force: :cascade do |t|
     t.string   "title"
     t.string   "description"
@@ -52,6 +64,7 @@ ActiveRecord::Schema.define(version: 20170212051956) do
   add_index "jobs", ["company_id"], name: "index_jobs_on_company_id", using: :btree
 
   add_foreign_key "comments", "jobs"
+  add_foreign_key "contacts", "companies"
   add_foreign_key "jobs", "categories"
   add_foreign_key "jobs", "companies"
 end

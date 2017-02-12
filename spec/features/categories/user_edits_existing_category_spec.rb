@@ -1,27 +1,25 @@
 require "rails_helper"
 
-RSpec.feature "User edits a category..." do
-  scenario "They visit the new category page and fill out the form" do
-    category = Category.create(title: "Backend Development")
-    edit_category_title = "Full Stack Development"
-
+RSpec.feature "User edits an existing category" do
+  scenario "" do
+    category = create(:category)
     visit categories_path
 
     click_on "Edit"
 
-    expect(page).to have_current_path(edit_category_path(category))
+    expect(page).to have_current_path("/categories/#{category.id}/edit")
 
-    fill_in "category_title", with: edit_category_title
+    fill_in "category_title", with: "Full Stack Development"
     click_on "Submit"
 
-    expect(page).to have_content(edit_category_title)
+    expect(page).to have_content("Full Stack Development")
+    expect(current_path).to eq("/categories/#{category.id}")
+    expect(page).to have_content("Full Stack Development was successfully updated!")
   end
 
   context "user submits an invalid form" do
     scenario "user enters a title that already exists" do
-      category1 = Category.create(title: "Frontend Development")
-      category2 = Category.create(title: "Backend Development")
-
+      category1, category2 = create_list(:category, 2)
       visit edit_category_path(category2)
 
       fill_in "category_title", with: category1.title
@@ -31,10 +29,10 @@ RSpec.feature "User edits a category..." do
     end
 
     scenario "user leaves 'title' blank" do
-      category = Category.create(title: "Backend Development")
-
+      category = create(:category)
       visit edit_category_path(category)
 
+      fill_in "category_title", with: ""
       click_on "Submit"
 
       expect(page).to have_content("Title can't be blank")

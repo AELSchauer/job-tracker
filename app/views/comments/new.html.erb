@@ -1,0 +1,9 @@
+<h3>New Comment for <%= @job.title %> at <%= @job.company.name %></h3>
+
+<%= form_for [@job, @comment] do |f| %>
+  <%= f.text_area :content, cols: "100", rows: "10" %>
+  <br>
+  <br>
+  <%= f.submit "Submit", class: 'btn btn-submit' %>
+<% end %>
+<%= link_to "Cancel", job_path(@job), class: 'btn' %>

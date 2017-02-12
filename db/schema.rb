@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170210204954) do
+ActiveRecord::Schema.define(version: 20170212051956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 20170210204954) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "job_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "comments", ["job_id"], name: "index_comments_on_job_id", using: :btree
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -42,6 +51,7 @@ ActiveRecord::Schema.define(version: 20170210204954) do
   add_index "jobs", ["category_id"], name: "index_jobs_on_category_id", using: :btree
   add_index "jobs", ["company_id"], name: "index_jobs_on_company_id", using: :btree
 
+  add_foreign_key "comments", "jobs"
   add_foreign_key "jobs", "categories"
   add_foreign_key "jobs", "companies"
 end

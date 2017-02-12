@@ -1,7 +1,7 @@
 class JobsController < ApplicationController
   def index
     @company = Company.find(params[:company_id])
-    @jobs = @company.jobs
+    @jobs = @company.jobs.order(:title)
   end
 
   def new
@@ -25,6 +25,7 @@ class JobsController < ApplicationController
   def show
     @job = Job.find(params[:id])
     @company = @job.company
+    @comments = @job.comments.order(created_at: :desc)
   end
 
   def edit

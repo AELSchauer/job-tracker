@@ -1,6 +1,11 @@
 <h3>New Comment for <%= @job.title %> at <%= @job.company.name %></h3>
 
 <%= form_for [@job, @comment] do |f| %>
+  <ul>
+    <% @comment.errors.full_messages.each do |error| %>
+      <li class="error-message"><%= error %></li>
+    <% end %>
+  </ul>
   <%= f.text_area :content, cols: "100", rows: "10" %>
   <br>
   <br>

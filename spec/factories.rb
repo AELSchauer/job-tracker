@@ -1,6 +1,20 @@
 require 'faker'
 
 FactoryGirl.define do
+  # factory :comment_options do
+  #   [
+  #     Faker::Lorem.paragraphs(rand(2..3)).join("\r\n\r\n"),
+  #     Faker::Lorem.sentences(3.join(" ")),
+  #     Faker::Lorem.sentences(2.join(" ")),
+  #     Faker::Lorem.sentences(1.join(" "))
+  #   ]
+  # end
+
+  # factory :comment do
+  #   content { generate(:comment_options).sample }
+  #   job
+  # end
+
   factory :category do
     sequence(:title) { |n| "#{Faker::Book.genre} #{n}" }
 
@@ -29,7 +43,7 @@ FactoryGirl.define do
 
   factory :job do
     sequence(:title) { |n| "Developer #{n}" }
-    description Faker::Lorem.paragraph(2)
+    description Faker::Lorem.paragraphs(3).join("\r\n\r\n")
     sequence(:level_of_interest) { |n| "#{n}" }
     sequence(:city) { |n| "#{Faker::Address.city} #{n}" }
     category

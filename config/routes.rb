@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
 
   resources :jobs, only: :show do
-    resources :comments
+    resources :comments, only: [:new, :create]
   end
 
   resources :categories

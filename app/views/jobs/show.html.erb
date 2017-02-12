@@ -1,6 +1,6 @@
 <h2><%= @job.title %></h2>
 
-<div id="description">
+<div class="description" id="job-description">
   <% @job.split_description.each do |paragraph| %>
     <p><%= paragraph %></p>
   <% end %>
@@ -12,7 +12,7 @@
       Company
     </td>
     <td id="company-name">
-      <%= link_to @job.company.name, company_path(@job.company), class: 'link' %>
+      <%= link_to @company.name, company_path(@company), class: 'link' %>
     </td>
   </tr>
   <tr>
@@ -40,6 +40,28 @@
     </td>
   </tr>
 </table>
-<br>
+
 <%= link_to "Edit", edit_company_job_path(@company, @job), class: 'btn btn-edit' %>
 <%= link_to "Delete", company_job_path(@company, @job), class: 'btn btn-delete', method: :delete %>
+
+<br>
+<br>
+
+<h3>Comments</h3>
+<%= link_to "Add Comment", new_job_comment_path(@job), class: 'btn btn-create' %>
+
+<br>
+<br>
+
+<% @comments.each do |comment| %>
+  <div class="comment" id="comment-<%= comment.id %>">
+
+    <div><%= comment.split_content[0] %></div>
+
+    <% comment.split_content[1..-1].each do |comment_paragraph| %>
+      <div class="spacer"></div>
+      <div><%= comment_paragraph %></div>
+    <% end %>
+
+  </div>
+<% end %>

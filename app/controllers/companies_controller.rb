@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
   def index
-    @companies = Company.all
+    @companies = Company.order(:name)
   end
 
   def new
@@ -44,7 +44,6 @@ class CompaniesController < ApplicationController
     flash[:'success-message'] = "#{company.name} was successfully deleted!"
     redirect_to companies_path
   end
-
 
   private
 

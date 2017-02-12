@@ -1,5 +1,5 @@
 class Contact < ActiveRecord::Base
-  validates :full_name, :position, :email, presence: true
+  validates :first_name, :last_name, :position, :email, presence: true
   validates :email, uniqueness: true
   belongs_to :company
 

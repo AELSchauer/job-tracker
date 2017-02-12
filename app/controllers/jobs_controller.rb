@@ -2,6 +2,7 @@ class JobsController < ApplicationController
   def index
     @company = Company.find(params[:company_id])
     @jobs = @company.jobs
+    @contacts = @company.contacts.order(:last_name)
   end
 
   def new
@@ -13,6 +14,7 @@ class JobsController < ApplicationController
   def create
     @company = Company.find(params[:company_id])
     @job = @company.jobs.new(job_params)
+
     if @job.save
       flash[:'success-message'] = "#{@job.title} at #{@company.name} was successfully created!"
       redirect_to job_path(@job)

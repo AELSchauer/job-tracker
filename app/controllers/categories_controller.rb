@@ -12,6 +12,7 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
 
     if @category.save
+      flash[:'success-message'] = "#{@category.title} was successfully created!"
       redirect_to category_path(@category)
     else
       render :new
@@ -23,24 +24,18 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    @category = Category.new
+    @category = Category.find(params[:id])
   end
 
   def update
-    @category = Category.new(category_params)
+    @category = Category.find(params[:id])
 
-    if @category.save
+    if @category.update(category_params)
+      flash[:'success-message'] = "#{@category.title} was successfully updated!"
       redirect_to category_path(@category)
     else
       render :edit
     end
-  end
-
-  def destroy
-    @category = Category.find(params[:id])
-    @category.destroy
-
-    redirect_to categories_path
   end
 
   private

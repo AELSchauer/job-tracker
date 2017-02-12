@@ -1,5 +1,26 @@
-<h1>All Jobs at <%= @company.name %></h1>
+<h1><%= @company.name %></h1>
 
-<% @jobs.each do |job| %>
-  <ul><%= job.title %> at <%= job.company.name %></ul>
-<% end %>
+<h2>Jobs</h2>
+
+<ul>
+  <% @company.jobs.each do |job| %>
+    <li>
+      <%= link_to job.title, job_path(job), class: 'link' %>
+    </li>
+  <% end %>
+</ul>
+<br>
+<%= link_to "Create Job", new_company_job_path(@company), class: 'btn btn-create' %>
+
+<br>
+<br>
+<h2>Contact</h2>
+<table>
+  <tr>
+    @company.contacts.each do |contact|
+      <li>
+        contact.full_name
+      </li>
+    end
+  </tr>
+</table>

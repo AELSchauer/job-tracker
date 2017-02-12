@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
   resources :companies do
-    resources :jobs
+    resources :jobs, except: :show
+  end
+
+  resources :jobs, only: :show do
+    resources :comments
   end
 
   resources :categories

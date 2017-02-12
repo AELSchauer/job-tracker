@@ -1,25 +1,25 @@
 require "rails_helper"
 
 RSpec.feature "User creates a category" do
-  scenario "when visiting the new category page" do
-    new_category_title = "Web Development"
-
+  scenario "" do
     visit categories_path
 
     click_on "Create Category"
 
-    expect(page).to have_current_path(new_category_path)
+    expect(page).to have_current_path("/categories/new")
 
-    fill_in "category_title", with: new_category_title
+    fill_in "category_title", with: "Web Development"
     click_on "Submit"
 
-    expect(page).to have_content(new_category_title)
+    expect(current_path).to eq("/categories/#{Category.last.id}")
+    expect(page).to have_content("Web Development was successfully created!")
+    expect(page).to have_content("Web Development")
+    expect(Category.count).to eq(1)
   end
 
   context "user submits an invalid form" do
     scenario "user enters a title that already exists" do
-      category = Category.create(title: "Web Development")
-
+      category = create(:category)
       visit new_category_path
 
       fill_in "category_title", with: category.title
@@ -30,10 +30,7 @@ RSpec.feature "User creates a category" do
 
     scenario "user leaves 'title' blank" do
       visit categories_path
-
       click_on "Create Category"
-
-      expect(page).to have_current_path(new_category_path)
 
       click_on "Submit"
 

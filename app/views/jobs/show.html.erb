@@ -1,13 +1,44 @@
-Title: <%= @job.title %>
-<br>
+<h2><%= @job.title %></h2>
 
-Description: <%= @job.description %>
-<br>
 
-Level of Interest: <%= @job.level_of_interest %>
-<br>
+<% @job.split_description.each do |paragraph| %>
+  <p><%= paragraph %></p>
+<% end %>
 
-City: <%= @job.city %>
+<table>
+  <tr>
+    <td>
+      Company
+    </td>
+    <td>
+      <%= link_to @job.company.name, company_path(@job.company), class: 'link' %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Level of interest
+    </td>
+    <td>
+      <%= @job.level_of_interest %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      City
+    </td>
+    <td>
+      <%= @job.city %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Category
+    </td>
+    <td>
+      <%= @job.category.nil? ? "" : @job.category.title %>
+    </td>
+  </tr>
+</table>
 <br>
-
-Company: <%= link_to @job.company.name, company_path(@job.company) %>
+<%= link_to "Edit", edit_company_job_path(@company, @job), class: 'btn btn-edit' %>
+<%= link_to "Delete", company_job_path(@company, @job), class: 'btn btn-delete', method: :delete %>

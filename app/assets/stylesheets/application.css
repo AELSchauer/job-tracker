@@ -34,7 +34,7 @@ td {
     padding: 5px;
 }
 
-a {
+a, a:visited {
   color: inherit;
   text-decoration: none;
 }
@@ -73,5 +73,13 @@ form {
 }
 
 .error-message {
-  color: red;
+  color: #D9534F;
+}
+
+.success-message {
+  color: #5CB85C;
+}
+
+.link {
+  text-decoration: underline;
 }

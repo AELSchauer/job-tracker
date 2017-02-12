@@ -9,6 +9,7 @@ describe "User edits an existing company" do
     click_button "Submit"
 
     expect(current_path).to eq("/companies/#{Company.last.id}/jobs")
+    expect(page).to have_content("EA Sports was successfully updated!")
     expect(page).to have_content("EA Sports")
     expect(page).to_not have_content("ESPN")
   end

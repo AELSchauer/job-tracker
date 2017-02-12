@@ -1,3 +1,4 @@
-<h2>Create a New Job at <%= @company.name %></h2>
+<h2>Create a New Job for <%= @company.name %></h2>
 
 <%= render partial: "form" %>
+<%= link_to 'Cancel', company_path(@company), class: 'btn'  %>

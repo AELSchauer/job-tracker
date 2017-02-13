@@ -1,6 +1,13 @@
 <%= form_for @company do |f| %>
+  <ul class="error-message">
+    <% @company.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+
   <%= f.label :name %>
   <%= f.text_field :name %>
-
+  <br>
+  <br>
   <%= f.submit "Submit", class: 'btn btn-submit' %>
 <% end %>

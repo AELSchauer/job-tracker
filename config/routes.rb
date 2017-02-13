@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
 
   resources :companies do
-    resources :jobs, except: :show
-    resources :contacts, only: [:new, :create, :index]
+    resources :jobs, except: [:show, :index]
+    resources :contacts, only: [:new, :create]
   end
 
   resources :jobs, only: :show do
     resources :comments, only: [:new, :create]
   end
+
+  resources :jobs, only: :index
 
   resources :categories
 

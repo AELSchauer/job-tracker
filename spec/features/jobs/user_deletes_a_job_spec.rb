@@ -13,7 +13,7 @@ RSpec.feature "User deletes a job" do
     click_on job2.title
     click_on "Delete"
 
-    expect(current_path).to eq(company_jobs_path(company))
+    expect(current_path).to eq(company_path(company))
     expect(page).to have_link(job1.title, href: job_path(job1.id))
     expect(page).to have_link(job3.title, href: job_path(job3.id))
 

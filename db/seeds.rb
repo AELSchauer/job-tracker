@@ -7,7 +7,7 @@ Contact.destroy_all
 Comment.destroy_all
 
 COMPANIES = ["ESPN", "Aetna", "United Airlines", "YNAB", "Shopify", "Starbucks", "Pivotal Labs", "Captain U"]
-JOBS = [ "Statistician", "Business Analyst", "Writer", "Accountant", "Architect", "Designer", "Interpreter", "Librarian" "Engineer", "Developer", "Dev Ops", "Quality Assurance", "Teacher", "Product Manager", "Consultant", "Community Manager"]
+JOBS = [ "Statistician", "Business Analyst", "Writer", "Accountant", "Architect", "Designer", "Interpreter", "Librarian", "Engineer", "Developer", "Dev Ops", "Quality Assurance", "Teacher", "Product Manager", "Consultant", "Community Manager"]
 CITIES = ["Seattle", "Denver", "Portland", "Indianapolis", "Madison", "Orlando", "San Diego", "Austin", "Las Vegas", "Little Rock", "Boise", "Eugene", "Oakland"]
 
 10.times do

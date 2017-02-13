@@ -4,7 +4,7 @@
 <br>
 <table>
   <% @companies.each do |company| %>
-    <tr class=company_<%=company.id%> >
+    <tr id=company-<%=company.id%> >
       <td>&bull;</td>
       <td>
         <%= link_to company.name, company_path(company), class: "link" %>

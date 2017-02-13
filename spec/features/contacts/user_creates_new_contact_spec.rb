@@ -15,7 +15,7 @@ RSpec.feature "User creates a new contact" do
     fill_in "contact[email]", with: "agent.macklin@fbi.gov"
     click_on "Submit"
 
-    expect(current_path).to eq("/companies/#{company.id}/jobs")
+    expect(current_path).to eq("/companies/#{company.id}")
     expect(page).to have_content("Contacts")
     expect(page).to have_content("Bert Macklin")
     expect(page).to have_content("FBI Agent")

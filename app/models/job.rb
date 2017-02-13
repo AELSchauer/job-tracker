@@ -5,6 +5,10 @@ class Job < ActiveRecord::Base
   has_many :comments
 
   def split_description
-    self.description.nil? ? [] : self.description.split("\n")
+    self.description.nil? ? [] : self.description.split("\r\n").reject { |p| p.empty? }
+  end
+
+  def category_title
+    self.category.nil? ? "" : self.category.title
   end
 end

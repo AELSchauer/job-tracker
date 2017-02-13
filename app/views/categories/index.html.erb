@@ -4,7 +4,7 @@
 <br>
 <table>
   <% @categories.each do |category| %>
-    <tr class=category_<%=category.id%> >
+    <tr id=category-<%=category.id%> >
       <td>&bull;</td>
       <td>
         <%= link_to category.title, category_path(category), class: "link" %>

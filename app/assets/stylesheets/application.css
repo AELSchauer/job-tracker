@@ -76,6 +76,13 @@ form {
   border: 1px #656565 solid;
 }
 
+.btn-search {
+  font-size: 12pt;
+  background-color: #5CC0DE;
+  border: 1px #3B7B8E solid;
+  padding: 4px 5px 4px 5px
+}
+
 .btn-edit {
   background-color: #5CC0DE;
   border: 1px #3B7B8E solid;

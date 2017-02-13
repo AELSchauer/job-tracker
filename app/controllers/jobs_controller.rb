@@ -1,6 +1,7 @@
 class JobsController < ApplicationController
-  def index
 
+  def index
+    @job_query = Job.query(query_params)
   end
 
   def new
@@ -61,4 +62,9 @@ class JobsController < ApplicationController
   def job_params
     params.require(:job).permit(:title, :description, :level_of_interest, :city, :category_id)
   end
+
+  def query_params
+    params.permit(:sort, :city)
+  end
+
 end

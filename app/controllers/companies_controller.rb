@@ -9,6 +9,7 @@ class CompaniesController < ApplicationController
 
   def create
     @company = Company.new(company_params)
+
     if @company.save
       flash[:'success-message'] = "#{@company.name} was successfully created!"
       redirect_to company_path(@company)
@@ -18,8 +19,9 @@ class CompaniesController < ApplicationController
   end
 
   def show
-    company = Company.find(params[:id])
-    redirect_to company_jobs_path(company)
+    @company  = Company.find(params[:id])
+    @jobs     = @company.jobs.order(:title)
+    @contacts = @company.contacts.order(:last_name)
   end
 
   def edit
@@ -28,8 +30,8 @@ class CompaniesController < ApplicationController
 
   def update
     @company = Company.find(params[:id])
-    @company.update(company_params)
-    if @company.save
+
+    if @company.update(company_params)
       flash[:'success-message'] = "#{@company.name} was successfully updated!"
       redirect_to company_path(@company)
     else

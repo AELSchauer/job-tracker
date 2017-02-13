@@ -48,6 +48,11 @@ form {
   text-align: justify;
 }
 
+.description div:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+
 .comment {
   width: 50%;
   display: block;
@@ -58,8 +63,8 @@ form {
   text-align: justify;
 }
 
-.spacer {
-   height: 10px
+.comment div:not(:last-child) {
+  margin-bottom: 15px;
 }
 
 .btn {

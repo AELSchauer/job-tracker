@@ -1,19 +1,17 @@
 class JobsController < ApplicationController
   def index
-    @company = Company.find(params[:company_id])
-    @jobs = @company.jobs.order(:title)
-    @contacts = @company.contacts.order(:last_name)
+
   end
 
   def new
-    @company = Company.find(params[:company_id])
-    @job = Job.new()
     @categories = Category.drop_down_list
+    @company    = Company.find(params[:company_id])
+    @job        = Job.new()
   end
 
   def create
     @company = Company.find(params[:company_id])
-    @job = @company.jobs.new(job_params)
+    @job     = @company.jobs.new(job_params)
 
     if @job.save
       flash[:'success-message'] = "#{@job.title} at #{@company.name} was successfully created!"
@@ -25,20 +23,20 @@ class JobsController < ApplicationController
   end
 
   def show
-    @job = Job.find(params[:id])
-    @company = @job.company
+    @job      = Job.find(params[:id])
+    @company  = @job.company
     @comments = @job.comments.order(created_at: :desc)
   end
 
   def edit
-    @job = Job.find(params[:id])
-    @company = @job.company
+    @job        = Job.find(params[:id])
+    @company    = @job.company
     @categories = Category.drop_down_list
   end
 
   def update
-    @job = Job.find(params[:id])
-    @company = Company.find(params[:company_id])
+    @job     = Job.find(params[:id])
+    @company = @job.company
 
     if @job.update(job_params)
       flash[:'success-message'] = "#{@job.title} at #{@company.name} was successfully updated!"
@@ -51,11 +49,10 @@ class JobsController < ApplicationController
 
   def destroy
     job = Job.find(params[:id])
-    company = Company.find(params[:company_id])
+    company = job.company
     job.destroy
 
     flash[:'success-message'] = "#{job.title} at #{company.name} was successfully deleted!"
-
     redirect_to company_path(company)
   end
 

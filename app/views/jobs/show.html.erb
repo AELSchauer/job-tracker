@@ -1,8 +1,8 @@
 <h2><%= @job.title %></h2>
 
-<div class="description" id="job-description">
+<div class="description" id="description">
   <% @job.split_description.each do |paragraph| %>
-    <p><%= paragraph %></p>
+    <div><%= paragraph %></div>
   <% end %>
 </div>
 
@@ -36,7 +36,7 @@
       Category
     </td>
     <td id="category">
-      <%= @job.category.nil? ? "" : @job.category.title %>
+      <%= @job.category_title %>
     </td>
   </tr>
 </table>
@@ -55,13 +55,8 @@
 
 <% @comments.each do |comment| %>
   <div class="comment" id="comment-<%= comment.id %>">
-
-    <div><%= comment.split_content[0] %></div>
-
-    <% comment.split_content[1..-1].each do |comment_paragraph| %>
-      <div class="spacer"></div>
+    <% comment.split_content.each do |comment_paragraph| %>
       <div><%= comment_paragraph %></div>
     <% end %>
-
   </div>
 <% end %>
